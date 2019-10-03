@@ -1,31 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
-import axios from 'axios'
+import promiseFinally from 'promise.prototype.finally';
+import AuthStore from './stores/AuthStore';
+import {Provider} from "mobx-react";
+import {HashRouter, Route, Switch} from "react-router-dom";
+import LoginScene from "./scene/LoginScene/LoginScene";
+import {PrivateRoute} from "./component/AppRoute/PrivateRoute";
+import HomeScene from "./scene/HomeScene/HomeScene";
+import RegisterScene from "./scene/RegisterScene/RegisterScene";
+
+const stores = {
+    AuthStore
+};
+
+// For easier debugging
+window._____APP_STATE_____ = stores;
+promiseFinally.shim();
+
 
 class App extends Component {
-    state = {
-        greeting: ''
-    }
-    componentDidMount() {
-        axios.get('/api/helloworld')
-            .then(result => this.setState({greeting: result.data.sayHi}))
-    }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-          <h1>{this.state.greeting}</h1>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <Provider {...stores}>
+                <HashRouter>
+                    <Switch>
+                        <Route path='/login' exact={true} component={LoginScene}/>
+                        <Route path='/register' component={RegisterScene}/>
+                        <PrivateRoute path='/' component={HomeScene}/>
+                    </Switch>
+                </HashRouter>
+            </Provider>
+        );
+    }
 }
 
 export default App;
