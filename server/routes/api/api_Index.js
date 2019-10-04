@@ -31,6 +31,7 @@ router.post('/login', async (req, res) => {
                                 username: user.username,
                                 phone: user.phone,
                                 isActive: user.isActive,
+                                accountType: user.accountType,
                             };
 
                             jwt.sign(

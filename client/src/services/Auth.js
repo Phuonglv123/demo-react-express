@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-let jwt = null;
+import jwt_decode from "jwt-decode";
 
 class Auth {
     constructor() {
@@ -65,8 +64,7 @@ class Auth {
     }
 
     logout() {
-        localStorage.removeItem('user');
-        jwt = null;
+        localStorage.removeItem('AUTH');
     }
 
     saveUser(user) {
@@ -81,15 +79,8 @@ class Auth {
 
     loadUser() {
         try {
-            let user = localStorage.getItem('AUTH');
-            if (user) {
-                user = JSON.parse(user);
-            }
-            if (user && user.token) {
-                jwt = user;
-                let token = user.token;
-                this.token = token;
-            }
+            const token = localStorage.getItem('AUTH');
+            return jwt_decode(token);
         } catch (e) {
             console.log(e);
         }

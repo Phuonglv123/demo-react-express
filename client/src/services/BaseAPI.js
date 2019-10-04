@@ -1,14 +1,12 @@
 import axios from 'axios';
 
 export default class BaseAPI {
-    constructor() {
-        this.apiUrl = config.api_url;
-    }
 
     setToken() {
         const token = localStorage.getItem('AUTH');
         return token;
     }
+
 
     async apiCall(option: Option) {
         option.method = option.hasOwnProperty('method') ? option.method : 'GET';
@@ -28,10 +26,10 @@ export default class BaseAPI {
             const res = await axios({
                 method: option.method,
                 headers: {
-                    'Content-type': 'application/json',
+                    'Content-type': 'application/x-www-form-urlencoded',
                     'Authorization': this.setToken(),
                 },
-                url: `/${option.url}`,
+                url: `/api/${option.url}`,
                 data: option.params,
                 validateStatus: status => {
                     return true;

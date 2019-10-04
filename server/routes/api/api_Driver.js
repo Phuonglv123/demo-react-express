@@ -120,7 +120,7 @@ router.post('/detail', upload.single('avatarDriver'), passport.authenticate('jwt
     AccountDriver.findOne({accountID: id})
         .then(account => {
             if (account) {
-                return res.json({msg: "Accounr da co"})
+                return res.json({msg: "Driver have created"})
             } else {
                 const newDriver = new AccountDriver({
                     accountID: id, gender, birthday, address, passportID, company, registerDate: new Date().getTime(),

@@ -51,8 +51,7 @@ class AuthStore {
         this.error = undefined;
         return await Auth.login({username, password})
             .then(res => {
-                const token = res.token.replace('Bearer', '');
-                Auth.saveUser(token);
+                Auth.saveUser(res.token);
             })
             .catch(error => {
                 console.log(error)
