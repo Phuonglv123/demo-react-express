@@ -3,6 +3,8 @@ import DriverServices from "../services/DriverServices";
 
 class DriverStore {
     loading = false;
+    error = undefined;
+
     TripOfDriver = null;
 
     async getTripOfDriver(id) {
@@ -10,10 +12,10 @@ class DriverStore {
         autorun(async () => {
             return await DriverServices.getTripOfDriver(id)
                 .then(res => {
-                    console.log(res)
+                    this.TripOfDriver = res;
                 })
                 .catch(e => {
-                    console.log(e)
+                    this.error = e
                 })
         })
     }

@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
 import MyLayout from "../../component/MyLayout/MyLayout";
 import ToastNotify from "../../component/ToastNotify/ToastNotify";
+import MyLoading from "../../component/MyLoading/MyLoading";
 
 
 class LoginScene extends Component {
@@ -22,6 +23,7 @@ class LoginScene extends Component {
     render() {
         return (
             <MyLayout>
+                <MyLoading/>
                 <div className='row'>
                     <div className='col-md-6 login-form mx-auto'>
                         <h3>Login to example react mobx</h3>
