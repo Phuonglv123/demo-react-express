@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const path = require('path');
 
 
 const bodyParser = require('body-parser');
@@ -18,6 +19,9 @@ app.use(bodyParser.json());
 //passport
 app.use(passport.initialize());
 require('./server/config/passport')(passport);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // mongoDB connect
 mongoose.connect(db, {useNewUrlParser: true})
