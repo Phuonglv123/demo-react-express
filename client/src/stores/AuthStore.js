@@ -1,5 +1,4 @@
 import {action, decorate, observable} from "mobx";
-import jwt from 'jwt-decode';
 import Auth from "../services/Auth";
 
 class AuthStore {
