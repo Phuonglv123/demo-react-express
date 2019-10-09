@@ -36,7 +36,7 @@ class App extends Component {
                     <Switch>
                         <Route path='/login' exact={true} component={LoginScene}/>
                         <Route path='/register' exact={true} component={RegisterScene}/>
-                        <PrivateRoute path='/' exact={true} component={HomeScene}/>
+                        <Route path='/' exact={true} component={HomeScene}/>
                         <PrivateRoute path='/passenger' exact={true} component={PassengerScene} ARIA='passenger'/>
                         <DriverRoute path='/driver' exact={true} component={DriverScene} ARIA='driver'/>
                         <Route component={NotFound404}/>

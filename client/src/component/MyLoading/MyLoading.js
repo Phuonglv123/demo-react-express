@@ -2,13 +2,6 @@ import React, {Component} from 'react';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 
 class MyLoading extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true
-        }
-    }
-
 
     render() {
         const myStyle = {
@@ -23,7 +16,7 @@ class MyLoading extends Component {
                     sizeUnit={"px"}
                     size={15}
                     color={'#123abc'}
-                    loading={this.state.loading}
+                    loading={this.props.loading}
                 />
             </div>
         );

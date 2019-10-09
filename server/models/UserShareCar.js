@@ -35,7 +35,7 @@ const UserSchema = new Schema({
         type: Boolean,
         required: true
     }
-})
+});
 
 const UserShareCar = mongoose.model('UserShareCar.js', UserSchema);
 module.exports = UserShareCar;
